@@ -1,0 +1,635 @@
+{
+	"info": {
+		"_postman_id": "ece0f631-8349-4206-a934-5e00b0a18711",
+		"name": "https://www.openweathermap.org",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Валидация API KEY ожидается статус 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bdb3b865-ee78-4b9e-a440-d0574bb73e4f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "Для проверки вали"
+			},
+			"response": []
+		},
+		{
+			"name": "Валидация доступа к API без API KEY ожидается статус 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3dacb569-3a50-4fbb-837b-678c0498050f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By city name /Positive ожидается статус код 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88891adb-6ab6-4f33-8f47-4b50c9f3f3e5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Kiev&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Kiev"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "Текущая погода в Санкт-Петербурге\nожидатся страна RU"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By city name ожидается статус код 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6890b48d-8e5c-443e-8ac5-45b73091fc60",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Saint Petersbur&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Saint Petersbur"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "невалидный город\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By city name&Country /Positive ожидается статус код 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88891adb-6ab6-4f33-8f47-4b50c9f3f3e5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Saint Petersburg,us&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Saint Petersburg,us"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "Погода в Санкт-Петербурге США\nпара город&страна валидная"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By city name&Countryожидается статус код 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3f9d10e-7d02-491c-a476-ec3cfae07a33",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Saint Petersbur,us&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Saint Petersbur,us"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "невалидный город\nвалидная страна\nожидается 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By city name&Countryожидается статус код 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3f9d10e-7d02-491c-a476-ec3cfae07a33",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Saint Petersburg,ua&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Saint Petersburg,ua"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "валидный город\nневалидная страна\nожидается 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By cityID /Positive ожидается статус код 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00363c20-f9d8-42c3-a4c5-aab283138527",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?id=4171563&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4171563"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "\nID валидный, но ID ненайдено соответствие в БД"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By cityID  ожидается статус код 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6b9a0db-db0a-41cb-9c33-2a7637e2aa8a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?id=444&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "444"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "\nID валидный, но ID ненайдено соответствие в БД"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By cityID ожидается статус код 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "457f4ab5-e2fc-450e-9964-72f6e6354438",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?id=уке&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "уке"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "\nID невалидный"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By geographic coordinates/Positive ожидается статус код 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00363c20-f9d8-42c3-a4c5-aab283138527",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?lat=27.77&lon=-82.68&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "27.77"
+						},
+						{
+							"key": "lon",
+							"value": "-82.68"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "правильные координаты"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By geographic coordinates/Positive ожидается статус код400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "272780b4-5474-41df-9df2-2bc2b9eb0efc",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?lon=181&lat=-90&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "lon",
+							"value": "181"
+						},
+						{
+							"key": "lat",
+							"value": "-90"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				},
+				"description": "проверка граничных условий"
+			},
+			"response": []
+		},
+		{
+			"name": "Current Weather check By ZIP ожидается статус код 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00363c20-f9d8-42c3-a4c5-aab283138527",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?zip=02140,ua&appid=628a2d9802147e9c647be02a1ea2d6a7",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "zip",
+							"value": "02140,ua"
+						},
+						{
+							"key": "appid",
+							"value": "628a2d9802147e9c647be02a1ea2d6a7"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dfc55046-f195-4c81-908a-0a2879c1b4db",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d6945635-9fac-4b15-83d6-d0a790d0576e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
